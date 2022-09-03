@@ -1,9 +1,21 @@
 import React from 'react'
 import {AppBar, Box, Grid, Toolbar, Typography} from '@material-ui/core';
 import {Search} from '@mui/icons-material';
-import {Card, CardMedia} from '@mui/material';
+import {MusicianCard} from './MusicianCard';
+import axios from 'axios';
+
+const options = {
+    method: 'GET',
+    url: 'https://en.wikipedia.org/w/api.php',
+    params: {action: 'query', format: 'json', formatversion: '2', prop: 'pageimages|pageterms', piprop: 'original', titles: 'Albert Einstein'}
+};
 
 const Home = () => {
+    axios.request(options).then(function (response) {
+        console.log(response.data);
+    }).catch(function (error) {
+        console.error(error);
+    });
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position={'absolute'}>
@@ -22,20 +34,9 @@ const Home = () => {
             </AppBar>
                 <Grid container style={{marginTop: 80}}>
                     <Grid item xs={3}>
-                    <Card style={{
-                        height: 400,
-                        justifyContent: 'center',
-                        display: 'flex'}}>
-                        <CardMedia
-                            sx={{
-                                borderRadius: '50%',
-                                height: 200,
-                                width: 200}}
-                            component='img'
-                            src='eminem.jpg'
-                            alt='eminem'
+                        <MusicianCard
+                            filePath='eminem.jpg'
                         />
-                    </Card>
                 </Grid>
             </Grid>
         </Box>
