@@ -2,6 +2,9 @@ const SpotifyWebApi = require("spotify-web-api-node")
 const express = require('express')
 const app = express()
 const dotenv = require('dotenv')
+const artist = require('./routes/artists');
+
+app.use('/artist', artist)
 dotenv.config()
 
 const spotifyApi = new SpotifyWebApi({
@@ -9,8 +12,9 @@ const spotifyApi = new SpotifyWebApi({
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET
 });
 
+
 // Retrieve an access token
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
     spotifyApi.clientCredentialsGrant().then(
         function(data) {
             console.log('The access token expires in ' + data.body['expires_in']);
@@ -18,7 +22,8 @@ app.get('/api', (req, res) => {
 
             // Save the access token so that it's used in future calls
             spotifyApi.setAccessToken(data.body['access_token']);
-            res.send("Access Token" + data.body)
+            res.send(data.body)
+
         },
         function(err) {
             console.log(
