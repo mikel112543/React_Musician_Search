@@ -16,7 +16,7 @@ const Home = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
                     >
-                        MUI HELLO
+                        Welcome
                     </Typography>
                     <Search>
                     </Search>
