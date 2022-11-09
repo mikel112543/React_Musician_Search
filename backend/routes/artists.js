@@ -1,20 +1,27 @@
 const express = require('express')
 const router = express.Router();
 const token = require('../config/token')
+const cors = require('cors')
+const {getAccessToken} = require("../config/token");
+const SpotifyWebApi = require("spotify-web-api-node");
+const {raw} = require("express");
 
-const spotifyApi = token.getAccessToken();
 
-router.get('/', (req, res) => {
-    spotifyApi.getArtist('0TnOYISbd1XYRBk9myaseg').then(
-        (data) => {
-            console.log(`Got Info: ${data.body}`)
-            res.send(data.body)
-        },
-        (err) => {
-            console.error(`ERROR HERE ${err.body}`)
-            res.send(err.body)
-        }
-    );
+router.use(cors())
+/* /artist/*/
+router.get('/', async (req, res) => {
+    const spotifyApi = await token.getToken()
+        spotifyApi.getArtist(req.query.artistId).then(
+                (data) => {
+                    console.log(`Got Info: ${data.body}`)
+                    res.send(data.body)
+                },
+                (err) => {
+                    console.error(`ERROR HERE ${JSON.stringify(err.b)}`)
+                    res.send(err.body)
+                }
+    )
+    console.log(`This is the userId from the frontend ${req.query.artistId}`)
 })
 
 module.exports = router;

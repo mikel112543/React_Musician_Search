@@ -8,8 +8,8 @@ const spotifyApi = new SpotifyWebApi({
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET
 });
 
-const getAccessToken = () => {
-    spotifyApi.clientCredentialsGrant().then(
+const getToken = async () => {
+    await spotifyApi.clientCredentialsGrant().then(
         function(data) {
             console.log('The access token expires in ' + data.body['expires_in']);
             console.log('The access token is ' + data.body['access_token']);
@@ -21,8 +21,9 @@ const getAccessToken = () => {
                 err.message
             );
         }
+
     );
     return spotifyApi
 }
 
-module.exports = {getAccessToken}
+module.exports = {getToken}

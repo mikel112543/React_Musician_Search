@@ -16,8 +16,8 @@ export const MusicianCard = ({filePath, name, genres, type}) => {
                 <CardMedia
                     className="card-media"
                     component="img"
-                    image={"images/eminem.jpg"}
-                    alt="eminem"
+                    image={filePath}
+                    alt={"images/eminem.jpg"}
                 />
             </Grid>
             <Grid
@@ -25,8 +25,8 @@ export const MusicianCard = ({filePath, name, genres, type}) => {
                 <CardContent>
                     <Grid
                         className="info-grid">
-                        <Typography className="artist-name" variant="h5">Eminem</Typography>
-                        <Typography className="artist-genres" variant="paragraph">Rap, Hip-Hop</Typography>
+                        <Typography className="artist-name" variant="h5">{name}</Typography>
+                        <Typography className="artist-genres" variant="paragraph">{genres}</Typography>
                         <Typography className="artist-type" variant="paragraph">Solo</Typography>
                     </Grid>
                 </CardContent>
