@@ -29,5 +29,5 @@ export const AxiosRequest = (url, method, payload, params) => {
         })();
     }, []);
 
-    return {cancel, artist: data, error, loaded}
+    return {cancel, artists: data, error, loaded}
 }

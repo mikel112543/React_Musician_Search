@@ -4,11 +4,10 @@ import {Search} from '@mui/icons-material';
 import {MusicianCard} from './MusicianCard';
 import {AxiosRequest} from '../hooks/AxiosRequest'
 
-
 const Home = () => {
-    const {artist, error, loaded} = AxiosRequest(`/artist`, 'get', null, {artistId: '0TnOYISbd1XYRBk9myaseg'})
-
+    const {artists, error, loaded} = AxiosRequest(`/artists`, 'get', null, {})
     if (loaded) {
+        console.log(artists)
         return error ? (
             <span>Error: {error}</span>
         ) : (
@@ -27,15 +26,14 @@ const Home = () => {
                         </Search>
                     </Toolbar>
                 </AppBar>
-                <Grid container style={{marginTop: 80}}>
+                <Grid container style={{marginTop: 80, flexDirection: "column"}}>
                     <Grid item xs={3}>
-                        <MusicianCard
-                            name={artist.name}
-                            genres={artist.genres}
-                            filePath={artist.images[2].url}
-                        />
+                        {artists.forEach(({artist}) => (
+                            <MusicianCard
+                                name={artist.name}
+                            />
+                        ))}
                     </Grid>
-                    <span>{artist.name}</span>
                 </Grid>
             </Box>
         );

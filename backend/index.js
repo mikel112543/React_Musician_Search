@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
-const artist = require('./routes/artists');
+const artists = require('./routes/artists');
 const cors = require("cors")
 
 app.use(cors())
-app.use('/artist', artist)
+app.use('/artists', artists)
 app.listen(1234)
