@@ -7,7 +7,6 @@ import {AxiosRequest} from '../hooks/AxiosRequest'
 const Home = () => {
     const {artists, error, loaded} = AxiosRequest(`/artists`, 'get', null, {})
     if (loaded) {
-        console.log(artists)
         return error ? (
             <span>Error: {error}</span>
         ) : (
@@ -26,12 +25,16 @@ const Home = () => {
                         </Search>
                     </Toolbar>
                 </AppBar>
-                <Grid container style={{marginTop: 80, flexDirection: "column"}}>
-                    <Grid item xs={3}>
-                        {artists.forEach(({artist}) => (
+                <Grid container direction="row" justifyContent={"space-evenly"} style={{marginTop: 80}}>
+                    <Grid container xs={12} spacing={6} justifyContent={"space-evenly"} direction="row">
+                        {artists.map((artist) => (
+                            <Grid item>
                             <MusicianCard
-                                name={artist.name}
+                                name={artist.artists[0].strArtist}
+                                genres={artist.artists[0].strGenre}
+                                filePath={artist.artists[0].strArtistThumb}
                             />
+                            </Grid>
                         ))}
                     </Grid>
                 </Grid>
