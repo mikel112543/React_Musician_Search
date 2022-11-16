@@ -5,7 +5,6 @@ const {parse} = require('csv-parse')
 const router = express.Router();
 const cors = require('cors')
 router.use(cors())
-let artists = []
 
 const getArtists = async () => {
     return new Promise((resolve) => {
@@ -25,7 +24,7 @@ const getArtists = async () => {
             .on("end", async function () {
                 console.log(`Parse complete`)
                 let count = 0
-                artists = []
+                const artists = []
                 while(count <= 10) {
                     await audioDBAPI.request({
                         url: `/search.php`,

@@ -6,23 +6,27 @@ import {useState} from "react";
 export const SearchBar = ({setSearchQuery}) => {
     const [textInput, setTextInput] = useState("")
     return (
-        <form style={{background: "white",borderColor: "white", borderRadius: 10}}>
+        <div style={{background: "white", borderColor: "white", borderRadius: 10}}>
             <TextField
                 id="search-bar"
-                style={{background: "white", borderRadius: 10}}
+                style={{background: "white", width: 400,borderRadius: 10}}
                 className="text"
                 onInput={(e) => {
                     setTextInput(e.target.value);
                 }}
-                label="Search for an artist"
                 placeholder="Search..."
                 size="small"
+                onKeyDown={event => {
+                    if(event.key === "Enter") {
+                        setSearchQuery(textInput)
+                    }
+                }}
             />
             <IconButton aria-label="search" onClick={() => {
                 setSearchQuery(textInput)
             }}>
                 <SearchIcon style={{fill: "blue"}}/>
             </IconButton>
-        </form>
+        </div>
     )
 }
