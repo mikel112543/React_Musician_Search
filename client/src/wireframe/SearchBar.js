@@ -1,7 +1,7 @@
 import {TextField} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
-import {useState} from "react";
+import React, {useState} from "react";
 
 export const SearchBar = ({setSearchQuery}) => {
     const [textInput, setTextInput] = useState("")
@@ -13,6 +13,7 @@ export const SearchBar = ({setSearchQuery}) => {
                 className="text"
                 onInput={(e) => {
                     setTextInput(e.target.value);
+                    console.log(`Value ${textInput}` )
                 }}
                 placeholder="Search..."
                 size="small"
