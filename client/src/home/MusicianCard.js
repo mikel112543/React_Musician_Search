@@ -1,11 +1,23 @@
 import {Card, CardContent, CardMedia} from "@mui/material";
 import React from "react";
+import {useNavigate} from "react-router-dom";
 import {Grid, Typography} from "@material-ui/core";
 import "./MusicianCard.css"
 
-export const MusicianCard = ({filePath, name, genres, type}) => {
-    return (<Card
+export const MusicianCard = ({filePath, name, genres}) => {
+    const navigate = useNavigate()
+
+    const navigateToProfile = () => {
+        navigate('/artist',
+            {
+                state: {s : name}
+        })
+    }
+
+    return (
+        <Card
         className="card"
+        onClick={navigateToProfile}
     >
         <Grid className="card-container">
             <Grid
@@ -32,5 +44,6 @@ export const MusicianCard = ({filePath, name, genres, type}) => {
                 </CardContent>
             </Grid>
         </Grid>
-    </Card>);
+    </Card>
+    );
 };

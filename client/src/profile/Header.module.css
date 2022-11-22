@@ -1,0 +1,46 @@
+.bannerImage {
+    display: flex;
+    height: 450px;
+    width: 100%;
+    filter: blur(5px);
+
+    background-size: cover;
+}
+
+.profileDetails {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileImage {
+    border-radius: 50%;
+    height: 180px;
+    width: 180px;
+}
+
+.artistName, .artistGenres, .artistCountry {
+    color: white;
+    text-align: center;
+}
+
+.artistName {
+    padding: 10px 0 0 0;
+    font-size: 50px;
+}
+
+.artistGenres {
+    font-size: 50px;
+    padding: 0 0 5px 0;
+}
+
+.pin {
+    color: white;
+    transform: scale(0.8);
+}
+
+.artistCountry {
+    font-size: 15px;
+}

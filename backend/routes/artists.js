@@ -6,6 +6,13 @@ const router = express.Router();
 const cors = require('cors')
 router.use(cors())
 
+
+/* /artist/ */
+router.get('/', async (req, res) => {
+    const artists = await getArtists();
+    res.send(artists)
+})
+
 const getArtists = async () => {
     return new Promise((resolve) => {
         const artistNames = []
@@ -43,11 +50,5 @@ const getArtists = async () => {
             })
     })
 }
-
-/* /artist/ */
-router.get('/', async (req, res) => {
-    const artists = await getArtists();
-    res.send(artists)
-})
 
 module.exports = router
