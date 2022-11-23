@@ -6,6 +6,7 @@ import {AxiosRequest} from "../hooks/AxiosRequest";
 import Header from "./Header";
 import {Divider} from "@mui/material";
 import {TabContext, TabList} from "@mui/lab";
+import MusicCard from "./MusicCard";
 
 const ArtistProfile = () => {
     const location = useLocation()
@@ -34,20 +35,22 @@ const ArtistProfile = () => {
                                 <Tab label="Tab 3" value='3'></Tab>
                             </TabList>
                             <Divider></Divider>
-                    <TabPanel value="1">
-                        <Typography variant={"body1"}>{artists.bio}</Typography></TabPanel>
-                    <TabPanel value="2"></TabPanel>
-                    <TabPanel value="3">Web Development</TabPanel>
+                            <TabPanel value="1">
+                                <Typography variant={"body1"}>{artists.bio}</Typography></TabPanel>
+                            <TabPanel value="2">
+                                <MusicCard/>
+                            </TabPanel>
+                            <TabPanel value="3">Web Development</TabPanel>
                         </TabContext>
                     </Box>
                 </Grid>
             </>
 
-    )
+        )
     }
     return (
         <span>Loading...</span>
     )
-    }
+}
 
-    export default ArtistProfile
+export default ArtistProfile
