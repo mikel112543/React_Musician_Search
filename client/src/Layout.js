@@ -9,7 +9,9 @@ const Layout = ({children}) => {
     const navigate = useNavigate();
     const [searchQuery, setSearchQuery] = useState("")
     const providerValue = useMemo(() => ({searchQuery, setSearchQuery}), [searchQuery, setSearchQuery]);
-    const navHome = () => { navigate('/') }
+    const navHome = () => {
+        setSearchQuery("")
+        navigate('/') }
 
     return (
         <>
