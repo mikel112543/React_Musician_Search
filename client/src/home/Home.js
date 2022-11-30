@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
-import {AppBar, Box, Grid, Toolbar} from '@material-ui/core';
+import React, {useContext} from 'react'
+import {Box, Grid} from '@material-ui/core';
 import {MusicianCard} from './MusicianCard';
 import {AxiosRequest} from '../hooks/AxiosRequest'
-import {SearchBar} from "../wireframe/SearchBar";
+import {SearchContext} from "../config/SearchContext";
 
 const Home = () => {
-    const [searchQuery, setSearchQuery] = useState("")
+    const {searchQuery} = useContext(SearchContext)
     const {artists, error, loaded} = AxiosRequest(`/artists`, 'get', null, {})
     const filteredArtist = filterData(searchQuery, artists)
 
@@ -14,14 +14,6 @@ const Home = () => {
             <span>Error: {error}</span>
         ) : (
             <Box sx={{flexGrow: 1}}>
-                <Grid container style={{marginBottom: 80}}>
-                    <AppBar position={'absolute'}>
-                        <Toolbar style={{justifyContent: "center"}}>
-                            <SearchBar
-                                searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
-                        </Toolbar>
-                    </AppBar>
-                </Grid>
                 <Grid container direction="row" justifyContent={"space-evenly"}>
                     <Grid container xs={12} spacing={6} justifyContent={"space-evenly"} direction="row">
                         {searchQuery !== "" ? (
